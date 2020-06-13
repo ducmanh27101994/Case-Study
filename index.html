@@ -7,11 +7,43 @@
         #myCanvas {
             background-image: url(image/background.jpg);
         }
-
+        canvas {
+            display: block;
+        }
     </style>
 </head>
 <body>
 <canvas id="myCanvas" width="500px" height="600px" style="border: 1px solid #d3d3d3; " ></canvas>
 
+<img id="car" src="image/car2.png" height="100" width="50" alt=""/>
+
+
+<script>
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+
+    class Car {
+        constructor(x = 0, y = 0, imgSrc) {
+            this.x = x
+            this.y = y
+            this.image = new Image()
+            this.image.src = imgSrc
+        }
+
+        draw(ctx) {
+            const { x, y } = this
+            ctx.drawImage(this.image, x, y, Car.width, Car.height)
+            this.drawn = true
+        }
+    }
+    Car.height = 100
+    Car.width = 50
+
+    let car = new Car(200,500,"image/car2.png")
+    car.draw(ctx);
+
+
+
+</script>
 </body>
 </html>
