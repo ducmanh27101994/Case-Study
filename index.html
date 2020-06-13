@@ -15,12 +15,10 @@
 <body>
 <canvas id="myCanvas" width="500px" height="600px" style="border: 1px solid #d3d3d3; " ></canvas>
 
-<img id="car" src="image/car2.png" height="100" width="50" alt=""/>
-
-
+<img id="img1" src="image/stone.png" height="50" width="50"/>
 <script>
     let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
+    let pen = canvas.getContext('2d');
 
     class Car {
         constructor(x = 0, y = 0, imgSrc) {
@@ -30,17 +28,38 @@
             this.image.src = imgSrc
         }
 
-        draw(ctx) {
+        draw(pen) {
             const { x, y } = this
-            ctx.drawImage(this.image, x, y, Car.width, Car.height)
+            pen.drawImage(this.image, x, y, Car.width, Car.height)
             this.drawn = true
         }
+
     }
     Car.height = 100
     Car.width = 50
-
     let car = new Car(200,500,"image/car2.png")
-    car.draw(ctx);
+    car.draw(pen);
+
+    class Enemy {
+        constructor(x, y, speed) {
+            this.x = x;
+            this.y = y;
+            this.speed = speed;
+        }
+
+        draw(canvas) {
+            let img = document.getElementById('img1');
+            let pen = canvas.getContext('2d');
+            pen.beginPath();
+            pen.drawImage(img, this.x, this.y, 50, 50);
+            pen.fill();
+        }
+
+        move() {
+            this.y += this.speed;
+        }
+    }
+
 
 
 
