@@ -18,14 +18,46 @@
 <body>
 <canvas id="myCanvas" width="500px" height="600px" style="border: 1px solid #d3d3d3; "></canvas>
 
+<img src="image/stone.png" id="img1" style="width: 50px; height: 50px; display: none">
 <script>
-    let canvas = document.getElementById('myCanvas');
-    let pen = canvas.getContext('2d');
-    let enemys = [];
 
     let car = new Car(200, 500, 30);
     car.creatCar();
 
+    let canvas = document.getElementById('myCanvas');
+    let pen = canvas.getContext('2d');
+    let enemys = [];
+
+    function createEnemy() {
+
+        let speed = Math.floor(Math.random() * 5 + 5);
+        let x = Math.random() * window.innerWidth;
+        let y = 0;
+
+        let enemy = new Enemy(x, y, speed);
+        enemy.draw(canvas);
+        enemys.push(enemy)
+    }
+
+    function createMultiStone() {
+        for (let i = 0; i < 10; i++) {
+            createEnemy();
+        }
+    }
+
+    function main() {
+        pen.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < enemys.length; i++) {
+            enemys[i].move();
+            enemys[i].draw(canvas);
+
+        }
+
+        requestAnimationFrame(main);
+    }
+    setInterval(function(){ createMultiStone(); }, 2000);
+
+    main();
 
 
 
