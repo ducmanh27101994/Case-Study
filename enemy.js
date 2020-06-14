@@ -25,3 +25,22 @@ class Enemy {
         pen.fill();
     }
 }
+
+function createEnemy() {
+    let speed = Math.floor(Math.random() * 5 + 5);
+    let x = Math.random() * window.innerWidth;
+    let y = 0;
+
+    let enemy = new Enemy(x, y, speed);
+    enemy.draw(canvas);
+    enemys.push(enemy);
+}
+
+function main() {
+    pen.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < enemys.length; i++) {
+        enemy[i].move();
+        enemys[i].draw(canvas);
+    }
+    requestAnimationFrame(main);
+}
