@@ -21,12 +21,25 @@
 <script>
     let canvas = document.getElementById('myCanvas');
     let pen = canvas.getContext('2d');
-
+    let enemys = [];
 
     let car = new Car(200, 500, 30);
     car.creatCar();
-    let enemy = new Enemy();
-    enemy.creatEnemy();
+
+
+    function createEnemy() {
+        let speed = Math.floor(Math.random() * 5 + 5);
+        let x = Math.random() * window.innerWidth;
+        let y = 0;
+
+        let enemy = new Enemy(x, y, speed);
+        enemy.draw(canvas);
+        enemys.push(enemy);
+    }
+
+
+
+
 
     document.addEventListener("keydown", function (event) {
         if (event.keyCode === 37) {
