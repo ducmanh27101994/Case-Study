@@ -44,3 +44,9 @@ function main() {
     }
     requestAnimationFrame(main);
 }
+
+function createMultiStone() {
+    for (let i = 0; i < 10; i++) {
+        createStone();
+    }
+}
