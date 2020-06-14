@@ -7,86 +7,34 @@
         #myCanvas {
             background-image: url(image/background.jpg);
         }
+
         canvas {
             display: block;
         }
     </style>
+    <script src="car.js"></script>
+    <script src="enemy.js"></script>
 </head>
 <body>
-<canvas id="myCanvas" width="500px" height="600px" style="border: 1px solid #d3d3d3; " ></canvas>
+<canvas id="myCanvas" width="500px" height="600px" style="border: 1px solid #d3d3d3; "></canvas>
 
 <script>
     let canvas = document.getElementById('myCanvas');
     let pen = canvas.getContext('2d');
-    let enemys = [];
 
-    class Car {
-        constructor(x , y ,speed) {
-            this.x = x
-            this.y = y
-            this.speed = speed;
-        }
 
-        creatCar() {
-            let myCanvas = document.getElementById('myCanvas');
-            let ctx = myCanvas.getContext('2d');
-            let img = new Image;
-            img.onload = function () {
-                ctx.drawImage(img, 200, 500);
-            };
-            img.src = "image/car2.png"
-        }
-        moveLeft() {
-            this.x -= this.speed
-        }
-        moveRight() {
-            this.x += this.speed
-        }
-    }
-
-    class Enemy {
-        constructor(a,b,speed) {
-            this.a = a;
-            this.b = b;
-            this.speed = speed;
-        }
-        creatEnemy() {
-            let myCanvas = document.getElementById('myCanvas');
-            let ctx = myCanvas.getContext('2d');
-            let img = new Image;
-            img.onload = function () {
-                ctx.drawImage(img, 100, 200);
-            };
-            img.src = "image/stone.png";
-
-            let speed = Math.floor(Math.random() * 5 + 5);
-            let a = Math.random() * window.innerWidth;
-            let b = 0;
-
-            let enemy = new Enemy(a, b, speed);
-            enemys.push(enemy);
-
-        }
-        move() {
-            this.y += this.speed;
-        }
-    }
-
-    let car = new Car(200,500,30);
+    let car = new Car(200, 500, 30);
     car.creatCar();
     let enemy = new Enemy();
-   enemy.creatEnemy();
+    enemy.creatEnemy();
 
-    document.addEventListener("keydown" , function (event) {
+    document.addEventListener("keydown", function (event) {
         if (event.keyCode === 37) {
             car.moveRight();
         } else if (event.keyCode === 39) {
             car.moveLeft();
         }
     })
-
-
-
 
 
 </script>
